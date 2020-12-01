@@ -16,7 +16,35 @@ class Api::V1::OrdersController < ApplicationController
   def create
     @order= Order.new(order_params)
     @order.total = @order.product_ids.map{|x| Product.find(x).price}.sum
+    products = ''
     if @order.save
+
+      @order.products.map{|x| x.name}.each{|order| products += "<li>#{order}</li>"}
+
+      html = "
+      <h1>Orden generada correctamente</h1>
+      <p>
+        <b>Nombre local: </b> <span>#{@order.store.name}</span> 
+      </p>
+      <p>
+        <b>Hora del pedido: </b> <span>#{@order.created_at.strftime("%H:%M")}</span> 
+      </p>
+
+      <p>
+        <b>Detalle: </b> <ul>#{products}</ul>
+      </p>
+
+      <hr>
+
+      <p>
+        <b>Total: </b> <span>#{@order.total.to_s + " CLP"}</span>
+      </p>
+
+      "
+
+      send_order(@order, @order.store.email, html )
+
+
       render json: @order, status: :created
     else
       render json: @order.errors, status: :unprocessable_entity

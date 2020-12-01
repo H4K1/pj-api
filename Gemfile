@@ -51,3 +51,5 @@ gem "rack-cors", "~> 1.1"
 
 gem "jbuilder", "~> 2.10"
 
+
+gem "mailgun-ruby", "~> 1.2"
