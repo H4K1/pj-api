@@ -1,5 +1,3 @@
-# PJ API
-
 # Endpoints
 
 ## Store - endpoints
