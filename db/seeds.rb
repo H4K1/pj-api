@@ -65,5 +65,5 @@ end
 # Asigna productos aleatorios a un store
 
 Store.all.each do |store| 
-  store.products << Product.all.shuffle[0..7]
+  store.products << Product.all
 end

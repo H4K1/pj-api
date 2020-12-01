@@ -3,6 +3,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def index
     @products = Product.order('created_at DESC')
+    @products = Store.find(params[:store_id]).products if params[:store_id]
 
     render json: @products
   end

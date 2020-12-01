@@ -3,15 +3,17 @@ class Api::V1::StoresController < ApplicationController
 
   def index
     @stores = Store.order('created_at DESC')
-    render :index
+    @stores = Order.where(store_id: params[:store_id]).order("created_at DESC") if params[:store_id]
+    render json: @stores
   end
 
   def show
-    render :show
+    render json: @store
   end
 
   def create
     @store = Store.new(store_params)
+    @store.product_ids = Product.ids if @store.product_ids.length == 0
     if @store.save
       render json: @store, status: :created
     else

@@ -3,13 +3,14 @@ class Api::V1::OrdersController < ApplicationController
 
   def index
     @orders= Order.order('created_at DESC')
+    @orders = Store.find(params[:store_id]).orders.order("created_at desc") if params[:store_id]
 
-    render :index
+    render json: @orders
   end
 
 
   def show
-    render :show
+    render json: @order
   end
 
   def create
