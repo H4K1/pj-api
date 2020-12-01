@@ -14,9 +14,9 @@ Ejemplo:
 ```json
 {
   "store": {
-    name: "Store name", 
-    email: "user@example.com",
-    address: "Localhost3000",
+    "name": "Store name", 
+    "email": "user@example.com",
+    "address": "Localhost3000",
     "phone": "00000000"
   }
 }
@@ -26,9 +26,9 @@ Por defecto agrega todos los productos a la tienda pero se les puede pasar manua
 ```json
 {
   "store": {
-    name: "Store name", 
-    email: "user@example.com",
-    address: "Localhost3000",
+    "name": "Store name", 
+    "email": "user@example.com",
+    "address": "Localhost3000",
     "phone": "00000000",
     "product_ids": [
       1,2,3,4
