@@ -9,11 +9,11 @@ class Api::V1::ProductsController < ApplicationController
 
 
   def show
-    render json: @store
+    render json: @product
   end
 
   def create
-    @product = Product.new(store_params)
+    @product = Product.new(product_params)
     if @product.save
       render json: @product, status: :created
     else
@@ -32,7 +32,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def update
     if @product
-      @product.update(store_params)
+      @product.update(product_params)
       render json: @product
     else
       render json: { product: "Not found", status: :not_found}
@@ -42,7 +42,7 @@ class Api::V1::ProductsController < ApplicationController
   private
 
   def set_product
-    @store = Store.find(params[:id]) 
+    @product = Product.find(params[:id]) 
   end
 
   def product_params

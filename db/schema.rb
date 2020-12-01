@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_041404) do
+ActiveRecord::Schema.define(version: 2020_12_01_051934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "total"
+    t.bigint "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_orders_on_store_id"
+  end
+
+  create_table "orders_products", id: false, force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.index ["order_id", "product_id"], name: "index_orders_products_on_order_id_and_product_id"
+    t.index ["product_id", "order_id"], name: "index_orders_products_on_product_id_and_order_id"
+  end
+
+  create_table "orders_stores", id: false, force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.bigint "order_id", null: false
+    t.index ["order_id", "store_id"], name: "index_orders_stores_on_order_id_and_store_id"
+    t.index ["store_id", "order_id"], name: "index_orders_stores_on_store_id_and_order_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -40,4 +62,5 @@ ActiveRecord::Schema.define(version: 2020_12_01_041404) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "orders", "stores"
 end

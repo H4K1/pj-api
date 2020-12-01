@@ -7,7 +7,7 @@ class Api::V1::StoresController < ApplicationController
   end
 
   def show
-    render json: @store
+    render :show
   end
 
   def create
@@ -44,7 +44,7 @@ class Api::V1::StoresController < ApplicationController
   end
 
   def store_params
-    params.require(:store).permit(:name, :address, :email, :phone)
+    params.require(:store).permit(:name, :address, :email, :phone, product_ids:[])
   end
 
 end
