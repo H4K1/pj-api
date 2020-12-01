@@ -1,3 +1,7 @@
+#Preview
+
+[Link api](https://stark-sands-65032.herokuapp.com/api/v1/stores)
+
 # Endpoints
 
 ## Store - endpoints
