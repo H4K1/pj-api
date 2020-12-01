@@ -1,0 +1,7 @@
+json.array! @stores do |store|
+  json.id store.id
+  json.name store.name
+  json.address store.address
+  json.email store.email
+  json.phone store.phone
+end
