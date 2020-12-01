@@ -10,6 +10,7 @@ Product.destroy_all
 Store.destroy_all
 
 complements = ["Carne", "Pimiento", "Tomate", "Cebolla", "Bacon", "Aceitunas", "Jamón", "Pollo", "Piña", "Pepperoni"] 
+pizzas = ["Napolitana", 'Cuatro quesos', "Hawaiana", "Barbacoa"]
 
 stores = [
   'Plaza de armas #234',
@@ -38,7 +39,7 @@ end
 
 
 
-# Generar complemetnos(products)
+# Generar complement(products)
 complements.each do |complement|
   Product.create(
     name: complement,
@@ -49,8 +50,20 @@ complements.each do |complement|
 
 end
 
-# Asigna productos aleatoreos a un store
+# Generar pizzas
+
+pizzas.each do |pizza|
+  Product.create(
+    name: pizza,
+    sku: uniqueSku,
+    type: "Pizza",
+    price: (rand(3..10) * 1000) - 10
+  )
+end
+
+
+# Asigna productos aleatorios a un store
 
 Store.all.each do |store| 
-  store.products << Product.all.shuffle[0..4]
+  store.products << Product.all.shuffle[0..7]
 end
